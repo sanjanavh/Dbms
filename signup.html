@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('railway.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: cernter center;
+}
+
+.container {
+    width: 80%; /* Reduced width */
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgb(227, 223, 223);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.4); /* Translucent background */
+}
+
+.signup-form {
+    width: 100%;
+}
+
+.signup-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:#031f3e;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #0a0a0a;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #101010;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9); /* Adjusted to match container */
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group small {
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    visibility: hidden;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #031f3e;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="signup-form">
+            <h2>Sign Up</h2>
+            <form id="form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <small>Error message</small>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" id="password2" name="password2" required>
+                    <small>Error message</small>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const password2 = document.getElementById('password2');
+
+    checkInputs();
+
+    function checkInputs() {
+        const usernameValue = username.value.trim();
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const password2Value = password2.value.trim();
+
+        if (usernameValue === '') {
+            setErrorFor(username, 'Username cannot be blank');
+        } else {
+            setSuccessFor(username);
+        }
+
+        if (emailValue === '') {
+            setErrorFor(email, 'Email cannot be blank');
+        } else if (!isEmail(emailValue)) {
+            setErrorFor(email, 'Not a valid email');
+        } else {
+            setSuccessFor(email);
+        }
+
+        if (passwordValue === '') {
+            setErrorFor(password, 'Password cannot be blank');
+        } else {
+            setSuccessFor(password);
+        }
+
+        if (password2Value === '') {
+            setErrorFor(password2, 'Password2 cannot be blank');
+        } else if (passwordValue !== password2Value) {
+            setErrorFor(password2, 'Passwords do not match');
+        } else {
+            setSuccessFor(password2);
+        }
+    }
+
+    function setErrorFor(input, message) {
+        const formGroup = input.parentElement;
+        const small = formGroup.querySelector('small');
+        small.innerText = message;
+        formGroup.className = 'form-group error';
+        small.style.visibility = 'visible';
+    }
+
+    function setSuccessFor(input) {
+        const formGroup = input.parentElement;
+        formGroup.className = 'form-group success';
+        formGroup.querySelector('small').style.visibility = 'hidden';
+    }
+
+    function isEmail(email) {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/.test(email.toLowerCase());
+    }
+});
+
+    </script>
+</body>
+</html>

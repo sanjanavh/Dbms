@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book train tickets online with ease. Find the best trains from your location to your destination.">
+    <meta name="keywords" content="train booking, train tickets, online booking">
+    <title>Train Booking System</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-image: url('railway.jpg');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: right;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: #031f3e;
+            color: #fff;
+            padding: 15px 0;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 50px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 110px); /* Adjusted for header and footer height */
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.4); /* White with 80% opacity */
+            padding: 20px; /* Reduced padding */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(242, 236, 236);
+            text-align: center;
+            max-width: 400px; /* Set a max-width to make the box smaller */
+            width: 100%;
+        }
+
+        .search-box h2 {
+            margin-bottom: 20px;
+            color: #031f3e;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            border-color: #031f3e;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background:#031f3e;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #031f3e;
+        }
+
+        footer {
+            background:#031f3e;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .search-box {
+                padding: 15px;
+            }
+
+            .search-box h2 {
+                font-size: 20px;
+            }
+
+            .form-group label, .form-group input {
+                font-size: 14px;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            footer {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Train Booking</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="file:///C:/Users/sanja/OneDrive/Desktop/DBMS/about.html"> About Us</a></li>
+                    <li><a href="file:///C:/Users/sanja/OneDrive/Desktop/DBMS/contact%20us.html">Contact</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="file:///C:/Users/sanja/OneDrive/Desktop/DBMS/signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="search-box">
+            <h2>Find Your Train</h2>
+            <form id="search-form">
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <input type="text" id="from" name="from" required aria-label="From station">
+                </div>
+                <div class="form-group">
+                    <label for="to">To</label>
+                    <input type="text" id="to" name="to" required aria-label="To station">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required aria-label="Date of journey">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Train Booking System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const from = document.getElementById('from').value.trim();
+            const to = document.getElementById('to').value.trim();
+            const date = document.getElementById('date').value;
+
+            if (from && to && date) {
+                alert(`Searching trains from ${from} to ${to} on ${date}`);
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+    </script>
+</body>
+</html>
